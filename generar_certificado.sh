@@ -16,9 +16,10 @@ fi
 
 ### Crea la CA para firmar los certificados ####
 if [ $SERVER_NAME = "ca"  ]; then
-        certtool --generate-privkey --outfile ca.key
-        certtool --generate-self-signe --load-privkey ca.key --template ca.cfg --outfile ca.crt
-        cp -fv ca.crt /etc/pki/ca-trust/source/anchors/
+        mkdir CA
+        certtool --generate-privkey --outfile CA/ca.key
+        certtool --generate-self-signe --load-privkey CA/ca.key --template ca.cfg --outfile CA/ca.crt
+        cp -fv CA/ca.crt /etc/pki/ca-trust/source/anchors/
         update-ca-trust
         exit 0
 fi
